@@ -1,0 +1,31 @@
+<h4>Show List</h4>
+<button type="button"  class="btn btn-primary rounded-pill mt-2 float-end"  (click)="onClickEdit()">Edit</button>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Address1</th>
+        <th scope="col">Address2</th>
+        <th scope="col">City</th>
+        <th scope="col">State</th>
+        <th scope="col">#Pin</th>
+    
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{index}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.phone}}</td>
+            <td>{{user.addresses[0].address1}}</td>
+            <td>{{user.addresses[0].address2}}</td>
+            <td>{{user.addresses[0].city}}</td>
+            <td>{{user.addresses[0].state}}</td>
+            <td>{{user.addresses[0].zip}}</td>  
+        </tr>
+    </tbody>
+</table>    
