@@ -1,0 +1,63 @@
+<button type="button" class="btn btn-primary rounded-pill mt-2 float-end" [routerLink]="['/users/new']">New</button>
+<div class="float-end">
+  <!-- <button 
+    type="button" class="btn btn-primary position-relative" ="onAddUser()">New Service Unit</button> -->
+
+</div>
+<app-user-filters (searchValue)="receiveResponse($event)"></app-user-filters>
+
+<!-- <input type="text" class="form-control" [(ngModel)]="testfilter.name" > -->
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Address1</th>
+      <th scope="col">Address2</th>
+      <th scope="col">City</th>
+      <th scope="col">State</th>
+      <th scope="col">#Pin</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of userDataPerPage | myFilter :searchValue;let i =index" >
+
+      <td [routerLink]="[i]"> {{data.id}}</td>
+      <td [routerLink]="[i]">{{data.name}}</td>
+      <td [routerLink]="[i]">{{data.email}}</td>
+      <td [routerLink]="[i]">{{data.phone}}</td>
+      <td [routerLink]="[i]"> {{data.addresses[0].address1}}</td>
+      <td [routerLink]="[i]">{{data.addresses[0].address2}}</td>
+      <td [routerLink]="[i]">{{data.addresses[0].city}}</td>
+      <td [routerLink]="[i]">{{data.addresses[0].state}}</td>
+      <td [routerLink]="[i]">{{data.addresses[0].zip}}</td>
+      <td>
+        <button class="btn btn-outline-success" [routerLink]="[i+'/edit']"><i class="bi bi-pen-fill"></i>Edit</button>
+
+        <button class="btn btn-outline-danger" (click)="deleteRow(i)">Delete</button>
+      </td>
+
+    </tr>
+  </tbody>
+</table>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li class="page-item" *ngFor="let page of pages" [ngClass]="{'active': selectedPage == page }"><a class="page-link" (click)="navigateToPage(page)">{{page}}</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>

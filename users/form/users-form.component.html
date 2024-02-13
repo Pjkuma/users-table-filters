@@ -1,0 +1,74 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-2 col--offset-1">
+            <form *ngIf="userForm" [formGroup]="userForm" >
+                <div class="formGroup">
+                    <label for="name">Username</label>
+                    <input type="text" class="form-control" formControlName="name">
+                    <sup class="text-danger"
+                    *ngIf="userForm.get('name')?.touched && userForm.get('name')?.invalid">
+                    username required</sup>
+                </div>
+                <div class="formGroup">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" formControlName="email">
+                    <sup class="text-danger"
+                    *ngIf="userForm.get('email')?.touched && userForm.get('email')?.invalid">
+                    email required</sup>
+                </div>
+                <div class="formGroup">
+                    <label for="phone">Phone</label>
+                    <input type="text" class="form-control" formControlName="phone">
+                    <sup class="text-danger" *ngIf="(userForm.errors ||{})['email_phone']">
+                    email or phone number required</sup>
+                </div>
+                <div class="formGroup">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" formControlName="password">
+                    <sup class="text-danger"
+                    *ngIf="userForm.get('password')?.touched && userForm.get('password')?.invalid">
+                password required</sup>
+                </div>
+                <div class="formGroup">
+                    <label for="confirm_password">Confirm Password</label>
+                    <input type="password" class="form-control" formControlName="confirm_password">
+                    <sup class="text-danger"
+                    *ngIf="(userForm.errors || {})['passwordMisMatch'] && userForm.get('confirm_password')?.touched">
+                confirm password must match with password</sup>
+                </div>
+                <div class="formGroup">
+                    <button class="btn btn-primary btn-block mt-1 me-3  " type="button" (click)="onAddAddress()">Add Address</button>
+                    <sup class="text-danger"
+                        *ngIf="(userForm.errors || {})['address_validation'] && userForm.get('addresses')?.touched">address field required</sup>
+                <div formArrayName="addresses" *ngFor="let address of getAddress; let i= index">
+                    <div [formGroupName]="i">
+                        Address {{i+1}}:
+                        <input type="text" class="form-control" formControlName="address1" placeholder="address1">
+                        <sup class="text-danger"
+                            *ngIf="userForm.get('address1')?.touched && userForm.get('address1')?.invalid">
+                            can't be blank</sup><br>
+                        <input type="text" class="form-control" formControlName="address2" placeholder="address2"><br>
+                        <input type="text" class="form-control" formControlName="city" placeholder="city">
+                        <sup class="text-danger"
+                            *ngIf="userForm.get('city')?.touched && userForm.get('city')?.invalid">
+                            can't be blank</sup><br>
+                        <input type="text" class="form-control" formControlName="state" placeholder="state">
+                        <sup class="invalid-feedback"
+                            *ngIf="userForm.get('state')?.touched && userForm.get('state')?.invalid">
+                            can't be blank</sup><br>
+                        <input type="text" class="form-control" formControlName="zip" placeholder="#zip/Pin">
+                        <sup class="text-danger"
+                            *ngIf="userForm.get('zip')?.touched && userForm.get('zip')?.invalid">
+                            can't be blank</sup><br>
+                        <button class="btn btn-outline-danger me-3" type="button" (click)="onRemoveAddress(i)">X</button>
+                    </div>
+                </div>
+                    <button type="submit" class="btn btn-primary mt-1 me-3" (click)="onSubmit()" *ngIf="!editMode">Submit</button>
+                    <button type="submit" class="btn btn-primary mt-1 me-3" (click)="onUpdate()" *ngIf="editMode">Update</button>
+                </div>   
+            </form>
+        </div>
+    </div>
+</div>
+
+

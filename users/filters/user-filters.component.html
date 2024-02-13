@@ -1,0 +1,52 @@
+ <div class="container-fluid">
+    <div class="row">
+        <h4>User List</h4>
+        <form [formGroup]="serviceForm">
+            <div class="row g-2">
+                <div class="col-lg-2">
+                    <div class="form-group">
+                        <label for="search">Name</label>
+                        <input type="input-text" class="form-control"   formControlName="name" (keyup)="updateFilters()">
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="form-group">
+                        <label for="search">Email</label>
+                        <input type="email" class="form-control"   formControlName="email" (keyup)="updateFilters()"> 
+                    </div>
+                </div>
+                <div class="col-lg-2 pl-lg-2">
+                    <div class="form-group">
+                        <label for="search">Phone</label>
+                        <input type="number" class="form-control"   formControlName="phone" (keyup)="updateFilters()">
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="float-end">
+
+                        <button type="reset" class="btn btn-outline-primary rounded-pill mt-3 me-4" style="float:right me-1"
+                            (click)="onReset()">Reset</button>
+                        <button type="button" class="btn btn-outline-success rounded-pill mt-3"
+                            style="float: inline-end" [routerLink]="['/users/show']">Go</button>
+
+                    </div>
+
+
+                </div>
+
+                <!--                     
+                    <div class="col-lg-2 position-absolute top-0 end-0">
+                        <div class="text-right">
+                            <button type="reset" class="btn btn-outline-primary rounded-pill mt-5" style="float:right me-1"  (click)="onReset()">Reset</button>
+                        </div>            
+                    </div>
+                    <div class="col-lg-1 position-absolute top-0 end-0">
+                        <div class="text-right">
+                            <button type="button" class="btn btn-outline-success rounded-pill mt-5" style="float: inline-end" (click)="onClickGo()">Go</button>
+                        </div>            
+                    </div> -->
+            </div>
+        </form>
+    </div>
+</div>
